@@ -5,6 +5,9 @@ import './App.css';
 function App() {
 const [data,setData] = useState([{}]);
 const [total,setTotal] = useState(0);
+const [femaleSal,setFemaleSal] = useState(0);
+const [maleSal,setMaleSal] = useState(0);
+const [bonusReceived,setBonusRecieved] = useState(0);
 var febData = [{}];
 
 const getData = async() => {
@@ -78,7 +81,7 @@ const evaluateFunc = () => {
   }
   else if(typeOfEmployee !== "Worker" && gender === "Female"){
   
-    if(weekday != 7 && weekday != 1){
+    if(weekday !== 7 && weekday !== 1){
       //Only from Mon-Fri
               if(perDayHours>=8){
                 //calculate -(No Overtime)
@@ -93,7 +96,7 @@ const evaluateFunc = () => {
     }
   }
   else{
-    if(weekday != 7 && weekday != 1){
+    if(weekday !== 7 && weekday !== 1){
     
 
       //Only from Mon-Fri
@@ -133,6 +136,9 @@ else{
   totalMaleSalaryOfMonth = totalMaleSalaryOfMonth+bonus;
 }
 
+setFemaleSal(totalFemaleSalaryOfMonth);
+setMaleSal(totalMaleSalaryOfMonth);
+setBonusRecieved(bonus);
 //Total Salary of month Feb
 const totalSal = totalMaleSalaryOfMonth+totalFemaleSalaryOfMonth;
 //output salary;
@@ -142,9 +148,12 @@ setTotal(totalSal);
 
   return (
     <div className="App">
-     <p>Monthly salary would be</p>
+     <p>ABC Corporation ,Feb Salary details</p>
      <button onClick={evaluateFunc}>Evaluate</button>
      <div>Total Salary for the month is : {total}</div>
+     <div>Total Female Salary for the month is : {femaleSal}</div>
+     <div>Total Male Salary for the month is : {maleSal}</div>
+     <div>bonus for the month is : {bonusReceived}</div>
     </div>
   );
 }
